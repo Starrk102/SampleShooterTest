@@ -35,7 +35,7 @@ namespace Bullet
                 }
             }
 
-            GameObject newObj = Instantiate(objectPrefab);
+            GameObject newObj = iObjResolved.Instantiate(objectPrefab);
             newObj.SetActive(false);
             pool.Add(newObj);
             newObj.SetActive(true);
