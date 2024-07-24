@@ -1,21 +1,24 @@
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+namespace Enemy
 {
-    public float speed = 2f;
-    public int health = 3;
-
-    void Update()
+    public class EnemyController : MonoBehaviour
     {
-        transform.Translate(Vector2.down * (speed * Time.deltaTime));
-    }
+        public float speed = 2f;
+        public int health = 3;
 
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
+        void Update()
         {
-            Destroy(gameObject);
+            transform.Translate(Vector2.down * (speed * Time.deltaTime));
+        }
+
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

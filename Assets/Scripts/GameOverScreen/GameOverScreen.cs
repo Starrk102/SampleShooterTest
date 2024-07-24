@@ -1,28 +1,28 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameOverScreen : MonoBehaviour
+namespace GameOverScreen
 {
-    [SerializeField] private Button restart;
-    [SerializeField] private Button quit;
-
-    private void Start()
+    public class GameOverScreen : MonoBehaviour
     {
-        restart.onClick.AddListener(() =>
+        [SerializeField] private Button restart;
+        [SerializeField] private Button quit;
+
+        private void Start()
         {
-            SceneManager.LoadScene("SampleScene");
-        });
+            restart.onClick.AddListener(() =>
+            {
+                SceneManager.LoadScene("SampleScene");
+            });
         
-        quit.onClick.AddListener(Application.Quit);
-    }
+            quit.onClick.AddListener(Application.Quit);
+        }
 
-    private void OnDestroy()
-    {
-        restart.onClick.RemoveAllListeners();
-        quit.onClick.RemoveAllListeners();
+        private void OnDestroy()
+        {
+            restart.onClick.RemoveAllListeners();
+            quit.onClick.RemoveAllListeners();
+        }
     }
 }

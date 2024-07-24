@@ -1,43 +1,50 @@
 using System.Collections.Generic;
 using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 
-public class ObjectPool : MonoBehaviour
+namespace Bullet
 {
-    public GameObject objectPrefab;
-    public int initialPoolSize = 10;
-    private List<GameObject> pool;
-
-    void Start()
+    public class ObjectPool : MonoBehaviour
     {
-        pool = new List<GameObject>();
-        for (int i = 0; i < initialPoolSize; i++)
-        {
-            GameObject obj = Instantiate(objectPrefab);
-            obj.SetActive(false);
-            pool.Add(obj);
-        }
-    }
+        public GameObject objectPrefab;
+        public int initialPoolSize = 10;
+        private List<GameObject> pool;
 
-    public GameObject GetObject()
-    {
-        foreach (GameObject obj in pool)
+        [Inject] private IObjectResolver iObjResolved;
+    
+        void Start()
         {
-            if (!obj.activeInHierarchy)
+            pool = new List<GameObject>();
+            for (int i = 0; i < initialPoolSize; i++)
             {
-                obj.SetActive(true);
-                return obj;
+                GameObject obj = iObjResolved.Instantiate(objectPrefab);
+                obj.SetActive(false);
+                pool.Add(obj);
             }
         }
 
-        GameObject newObj = Instantiate(objectPrefab);
-        newObj.SetActive(false);
-        pool.Add(newObj);
-        newObj.SetActive(true);
-        return newObj;
-    }
+        public GameObject GetObject()
+        {
+            foreach (GameObject obj in pool)
+            {
+                if (!obj.activeInHierarchy)
+                {
+                    obj.SetActive(true);
+                    return obj;
+                }
+            }
 
-    public void ReturnObject(GameObject obj)
-    {
-        obj.SetActive(false);
+            GameObject newObj = Instantiate(objectPrefab);
+            newObj.SetActive(false);
+            pool.Add(newObj);
+            newObj.SetActive(true);
+            return newObj;
+        }
+
+        public void ReturnObject(GameObject obj)
+        {
+            obj.SetActive(false);
+        }
     }
 }

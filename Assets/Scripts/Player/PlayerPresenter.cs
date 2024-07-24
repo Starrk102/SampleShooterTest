@@ -1,22 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-public class PlayerPresenter : IStartable
+namespace Player
 {
-    private readonly PlayerController player;
-    private IObjectResolver iObjectResolver;
-    
-    public PlayerPresenter(PlayerController player, IObjectResolver iObjectResolver)
+    public class PlayerPresenter : IStartable
     {
-        this.player = player;
-        this.iObjectResolver = iObjectResolver;
-    }
+        private readonly PlayerController player;
+        private IObjectResolver iObjectResolver;
     
-    public void Start()
-    {
+        public PlayerPresenter(PlayerController player, IObjectResolver iObjectResolver)
+        {
+            this.player = player;
+            this.iObjectResolver = iObjectResolver;
+        }
+    
+        public void Start()
+        {
         
+        }
     }
 }

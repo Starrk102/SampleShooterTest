@@ -1,30 +1,31 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Player;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using VContainer;
 
-public class HUD : MonoBehaviour
+namespace HUD
 {
-    public TMP_Text text;
+    public class HUD : MonoBehaviour
+    {
+        public TMP_Text text;
 
-    private PlayerController playerController;
+        private PlayerController playerController;
     
-    [Inject]
-    public void Container(PlayerController playerController)
-    {
-        this.playerController = playerController;
-    }
-
-    private void Start()
-    {
-        //text.text = playerController.health.Value.ToString();
-
-        playerController.health.Subscribe(currentHealth =>
+        [Inject]
+        public void Container(PlayerController playerController)
         {
-            text.text = currentHealth.ToString();
-        }).AddTo(this);
+            this.playerController = playerController;
+        }
+
+        private void Start()
+        {
+            //text.text = playerController.health.Value.ToString();
+
+            playerController.health.Subscribe(currentHealth =>
+            {
+                text.text = currentHealth.ToString();
+            }).AddTo(this);
+        }
     }
 }

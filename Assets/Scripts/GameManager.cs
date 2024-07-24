@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Player;
+using Settings;
 using TMPro;
 using UnityEngine;
 using VContainer;
@@ -10,7 +12,7 @@ public class GameManager : MonoBehaviour
 {
     [Inject] private PlayerController playerController;
     [Inject] private GameSettings gameSettings;
-    [Inject] private GameOverScreen gameOverScreen;
+    [Inject] private GameOverScreen.GameOverScreen gameOverScreen;
     [Inject] private Canvas canvas;
     [Inject] private DeadZone deadZone;
     

@@ -1,3 +1,7 @@
+using Bullet;
+using Enemy;
+using Player;
+using Settings;
 using TMPro;
 using UnityEngine;
 using VContainer;
@@ -18,8 +22,8 @@ public class GameInstaller : LifetimeScope
     [SerializeField] private DeadZone deadZone;
 
     [SerializeField] private Canvas canvas;
-    [SerializeField] private HUD hud;
-    [SerializeField] private GameOverScreen gameOverScreen;
+    [SerializeField] private HUD.HUD hud;
+    [SerializeField] private GameOverScreen.GameOverScreen gameOverScreen;
     
     protected override void Configure(IContainerBuilder builder)
     {
@@ -27,7 +31,7 @@ public class GameInstaller : LifetimeScope
         
         builder.RegisterInstance(gameSettings).AsSelf();
         builder.RegisterComponent(canvas);
-        builder.RegisterInstance<GameOverScreen>(gameOverScreen);
+        builder.RegisterInstance<GameOverScreen.GameOverScreen>(gameOverScreen);
         
         SpawnDeadZoneInit(builder);
         SpawnPointInit(builder);
@@ -39,8 +43,8 @@ public class GameInstaller : LifetimeScope
 
     private void HudInit(IContainerBuilder builder)
     {
-        var obj = Instantiate<HUD>(hud, canvas.transform);
-        builder.RegisterComponent<HUD>(obj);
+        var obj = Instantiate<HUD.HUD>(hud, canvas.transform);
+        builder.RegisterComponent<HUD.HUD>(obj);
     }
 
     private void SpawnDeadZoneInit(IContainerBuilder builder)

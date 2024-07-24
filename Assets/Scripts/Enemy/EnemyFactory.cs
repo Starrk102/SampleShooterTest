@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public class EnemyFactory : MonoBehaviour, IEnemyFactory
+namespace Enemy
 {
-    public GameObject enemyPrefab;
-    private IEnemyFactory enemyFactoryImplementation;
-
-    public GameObject CreateEnemy(Vector3 position, int health, float speed)
+    public class EnemyFactory : MonoBehaviour, IEnemyFactory
     {
-        GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity);
-        return enemy;
+        public GameObject enemyPrefab;
+        private IEnemyFactory enemyFactoryImplementation;
+
+        public GameObject CreateEnemy(Vector3 position, int health, float speed)
+        {
+            GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity);
+            return enemy;
+        }
     }
 }
